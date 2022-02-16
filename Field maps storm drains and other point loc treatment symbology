@@ -1,0 +1,31 @@
+// need to add option for last year, and any new chem we get (metalarv) etc.
+
+
+if($feature.Product == 'Altosid XR (EPA#2724-421)' && (datediff(now(), $feature.Date, 'days'))<140){
+var status = "New";
+}
+Else if($feature.Product == 'Altosid Briquets (EPA#2724-375)' && (datediff(now(), $feature.Date, 'days'))<28){
+var status = "New";
+}
+else if($feature.Product == 'Altosid WSP (EPA#2724-448)' && (datediff(now(), $feature.Date, 'days'))<28){
+var status = "New";
+}
+else if($feature.Product == 'Vectolex WSP (EPA#73049-20)' && (datediff(now(), $feature.Date, 'days'))<28){
+var status = "New";
+}
+else if($feature.Product == 'Natular G30 WSP (EPA#8329-91)' && (datediff(now(), $feature.Date, 'days'))<28){
+var status = "New";
+}
+else if($feature.Product == 'Natular WSP (EPA#8329-91)' && (datediff(now(), $feature.Date, 'days'))<28){
+var status = "New";
+}
+else if($feature.Product == 'None' && (datediff(now(), $feature.Date, 'days'))<28){
+var status = "New";
+}
+else if(Year($feature.Date) == 2020){
+    var status = "2020";
+}
+else {
+var status = "old";
+}
+return status

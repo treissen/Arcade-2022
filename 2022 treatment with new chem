@@ -1,0 +1,142 @@
+// Write a script that returns a value that will be used to draw features.
+// For example, find the percentage of males:
+// Round(($feature.MalePop / $feature.TotalPop) * 100, 2)
+/*  on february 12 2021 added 2020 month separtations.*/
+/// on february 7 2022 added 2021 month separations
+///Days passed and Product Used And Sample and expired treatments for less than one week
+var x = Year($feature.Date)
+var y = Month($feature.Date)
+var myArray = [3,4,5,6,7,8,9]
+if(x==2020 && y==2){
+    var status = "March 2020";
+}
+else if(x == 2020 && y == 3){
+    var status = "April 2020";
+}
+else if(x == 2020 && y == 4){
+    var status = "May 2020";
+}
+else if(x == 2020 && y == 5){
+    var status = "June 2020";
+}
+else if(x == 2020 && y == 6){
+    var status = "July 2020";
+}
+else if(x == 2020 && y == 7){
+    var status = "August 2020";
+}
+else if(x == 2020 && y == 8){
+    var status = "September 2020";
+}
+else if(x == 2020 && y == 9){
+    var status = "October 2020";
+}
+else if(x == 2020 && y != myArray){
+    var status = "2020";
+}
+/// 2021 treatments
+else if(x==2021 && y==2){
+    var status = "March 2021";
+}
+else if(x == 2021 && y == 3){
+    var status = "April 2021";
+}
+else if(x == 2021 && y == 4){
+    var status = "May 2021";
+}
+else if(x == 2021 && y == 5){
+    var status = "June 2021";
+}
+else if(x == 2021 && y == 6){
+    var status = "July 2021";
+}
+else if(x == 2021 && y == 7){
+    var status = "August 2021";
+}
+else if(x == 2021 && y == 8){
+    var status = "September 2021";
+}
+else if(x == 2021 && y == 9){
+    var status = "October 2021";
+}
+else if(x == 2021 && y != myArray){
+    var status = "2021";
+}
+else if(isEmpty($feature.Acres) && (datediff(now(), $feature.Date, 'days'))<10){
+var status = "Sample";
+}
+else if($feature.Product == 'Natular G (EPA#8329-80)' && (datediff(now(), $feature.Date, 'days'))<7){
+var status = "New";
+}
+else if($feature.Product == 'Censor (EPA#8329-80)' && (datediff(now(), $feature.Date, 'days'))<7){
+var status = "New";
+}
+Else if($feature.Product == 'Vectobac GR (EPA#73049-486)' && (datediff(now(), $feature.Date, 'days'))<7){
+var status = "New";
+}
+Else if($feature.Product == 'VectoPrime FG (EPA#73049-501)' && (datediff(now(), $feature.Date, 'days'))<7){
+var status = "New";
+}
+else if($feature.Product == 'Vectobac 12AS (EPA#73049-38)' && (datediff(now(), $feature.Date, 'days'))<7){
+var status = "New";
+}
+else if($feature.Product == 'Kontrol Oil (EPA#73748-10)' && (datediff(now(), $feature.Date, 'days'))<7){
+var status = "New";
+}
+else if($feature.Product == 'Abate 1% (EPA#8329-17)' && (datediff(now(), $feature.Date, 'days'))<7){
+var status = "New";
+}
+else if($feature.Product == 'VectoMax FG (EPA#73049-429)' && (datediff(now(), $feature.Date, 'days'))<22){
+var status = "New";
+}
+else if($feature.Product == 'Duplex G (EPA#89459-93)' && (datediff(now(), $feature.Date, 'days'))<26){
+var status = "New";
+}
+else if($feature.Product == 'Natular G30 (EPA#8329-83)' && (datediff(now(), $feature.Date, 'days'))<27){
+var status = "New";
+}
+else if($feature.Product == 'MetaLarv S-PT (EPA#73049-475)' && (datediff(now(), $feature.Date, 'days'))<40){
+var status = "New";
+}
+///Next lines of code are for symbolizing treatments that have been expired for less than a week
+
+else if($feature.Product == 'Natular G (EPA#8329-80)' && ((datediff(now(), $feature.Date, 'days')>=7) && (datediff(now(), $feature.Date, 'days'))<14)){
+var status = "Expired";
+}
+else if($feature.Product == 'Censor (EPA#8329-80)' && ((datediff(now(), $feature.Date, 'days')>=7) && (datediff(now(), $feature.Date, 'days'))<14)){
+var status = "Expired";
+}
+Else if($feature.Product == 'Vectobac GR (EPA#73049-486)' && ((datediff(now(), $feature.Date, 'days')>=7) && (datediff(now(), $feature.Date, 'days'))<14)){
+var status = "Expired";
+}
+Else if($feature.Product == 'VectoPrime FG (EPA#73049-501)' && ((datediff(now(), $feature.Date, 'days')>=7) && (datediff(now(), $feature.Date, 'days'))<14)){
+var status = "Expired";
+}
+else if($feature.Product == 'Vectobac 12AS (EPA#73049-38)' && ((datediff(now(), $feature.Date, 'days')>=7) && (datediff(now(), $feature.Date, 'days'))<14)){
+var status = "Expired";
+}
+else if($feature.Product == 'Kontrol Oil ((EPA#73748-10)' && ((datediff(now(), $feature.Date, 'days')>=7) && (datediff(now(), $feature.Date, 'days'))<14)){
+var status = "Expired";
+}
+else if($feature.Product == 'Abate 1% (EPA#8329-17)' && ((datediff(now(), $feature.Date, 'days')>=7) && (datediff(now(), $feature.Date, 'days'))<14)){
+var status = "Expired";
+}
+else if($feature.Product == 'VectoMax FG (EPA#73049-429)' && ((datediff(now(), $feature.Date, 'days')>=22) && (datediff(now(), $feature.Date, 'days'))<29)){
+var status = "Expired";
+}
+else if($feature.Product == 'Duplex G (EPA#89459-93)' && ((datediff(now(), $feature.Date, 'days')>=26) && (datediff(now(), $feature.Date, 'days'))<33)){
+var status = "Expired";
+}
+else if($feature.Product == 'Natular G30 (EPA#8329-83)' && ((datediff(now(), $feature.Date, 'days')>=27) && (datediff(now(), $feature.Date, 'days'))<34)){
+var status = "Expired";
+}
+else if($feature.Product == 'MetaLarv S-PT (EPA#73049-475)' && ((datediff(now(), $feature.Date, 'days')>=40) && (datediff(now(), $feature.Date, 'days'))<45)){
+var status = "Expired";
+}
+else if(Year($feature.Date) == 1899){
+    var status = "error in date";
+} 
+else {
+var status = "old";
+}
+return status

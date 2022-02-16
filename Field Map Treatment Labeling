@@ -1,0 +1,68 @@
+/// lableing for point treatments
+
+/// last updated Feb 16 2022
+/// 
+/// added code for labeling treatments in 2020
+/// added code for labeling treatments in 2021
+/// labeling for days old treatment, sample
+/// set up variables
+/// need to change var age month every new month
+
+var Acres = $feature.Acres
+var LBS = $feature.AmountUsed
+var Product = DomainName($feature,"Product") + ', '
+/// if else statements
+
+if(Month($feature.Date) == 2 && Year($feature.Date) == 2021){
+    var age = ' March 2021';
+}
+else if(Month($feature.Date) != 2 && Year($feature.Date) == 2021){
+    var age = ' 2021'
+}
+else var age = (text(date($feature.date),'ddd, ' + 'MMM ' + 'D'));
+
+/// 2020 labels
+if( age == ' March 2021'){
+    var status = ' March 2021';
+}
+else if(age == ' 2020'){
+    var status = '';
+}
+else if(age == ' 2021'){
+    var status = '';
+}
+/// New Labels
+else if((isEmpty($feature.AmountUsed)) && (datediff(now(), $feature.Date, 'days'))<21){
+    var status = 'Sample taken ' + age;
+}
+else if($feature.Product == 'Natular G (EPA#8329-80)' && (datediff(now(), $feature.Date, 'days'))<14){
+var status = LBS + ' LBS of ' + Product + age;
+}
+else if($feature.Product == 'Vectobac GR (EPA#73049-486)' && (datediff(now(), $feature.Date, 'days'))<14){
+var status = LBS + ' LBS of ' + Product + age;
+}
+else if($feature.Product == 'Vectobac 12AS (EPA#73049-38)' && (datediff(now(), $feature.Date, 'days'))<14){
+var status = LBS + ' LBS of ' + Product + age;
+}
+else if($feature.Product == 'Kontrol Oil (EPA#73748-10)' && (datediff(now(), $feature.Date, 'days'))<7){
+var status = LBS + ' LBS of ' + Product + age;
+}
+else if($feature.Product == 'Abate 1% (EPA#8329-17)' && (datediff(now(), $feature.Date, 'days'))<14){
+var status = LBS + ' LBS of ' + Product + age;
+}
+else if($feature.Product == 'VectoMax FG (EPA#73049-429)' && (datediff(now(), $feature.Date, 'days'))<29){
+var status = LBS + ' LBS of ' + Product + age;
+}
+else if($feature.Product == 'Duplex G (EPA#89459-93)' && (datediff(now(), $feature.Date, 'days'))<33){
+var status = LBS + ' LBS of ' + Product + age;
+}
+else if($feature.Product == 'Natular G30 (EPA#8329-83)' && (datediff(now(), $feature.Date, 'days'))<34){
+var status = LBS + ' LBS of ' + Product + age;
+}
+
+
+/// must include final else statement, or it will trigger a runtime error for var status
+else{
+    var status = ''
+}
+return status

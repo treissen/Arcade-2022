@@ -1,0 +1,28 @@
+// symbology for airspray blocks.
+// 2/17/2021
+// need to add option for previous year
+if((($feature.Chemical == 'Natular G (EPA#8329-80)') || ($feature.Chemical == 'Censor (EPA#8329-80)')) && (datediff(now(), $feature["Due_Date"], 'days'))<7){
+var status = "New";
+}
+else if($feature.Chemical == 'Vectobac GR (EPA#73049-486)' && (datediff(now(), $feature["Due_Date"], 'days'))<7){
+var status = "New";
+}
+else if($feature.Chemical == 'VectoMax FG (EPA#73049-429)' && (datediff(now(), $feature["Due_Date"], 'days'))<22){
+var status = "New";
+}
+
+///Next lines of code are for symbolizing treatments that have been expired for less than a week
+
+else if((($feature.Chemical == 'Natular G (EPA#8329-80)') || ($feature.Chemical == 'Censor (EPA#8329-80)')) && ((datediff(now(), $feature["Due_Date"], 'days')>=7) && (datediff(now(), $feature["Due_Date"], 'days'))<14)){
+var status = "Expired";
+}
+Else if($feature.Chemical == 'Vectobac GR (EPA#73049-486)' && ((datediff(now(), $feature["Due_Date"], 'days')>=7) && (datediff(now(), $feature["Due_Date"], 'days'))<14)){
+var status = "Expired";
+}
+else if($feature.Chemical == 'VectoMax FG (EPA#73049-429)' && ((datediff(now(), $feature["Due_Date"], 'days')>=22) && (datediff(now(), $feature["Due_Date"], 'days'))<29)){
+var status = "Expired";
+}
+else {
+var status = "old";
+}
+return status

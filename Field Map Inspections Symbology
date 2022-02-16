@@ -1,0 +1,21 @@
+///symbology for inspections
+var time1 = Date($feature.Date)
+if(DateDiff(Now(), time1, 'days')<6){
+Var Status = "inspected within last 6 days";
+}
+else if((DateDiff(Now(), time1, 'days')>=6 && DateDiff(Now(), time1, 'days')<=14)){
+var Status = "inspected within last 14 days";
+}
+else if((DateDiff(Now(), time1, 'days')>14 && DateDiff(Now(), time1, 'days')<=30)){
+var Status = "inspected within last 30 days";
+}
+else if((DateDiff(Now(), time1, 'days')>30 && Year(time1) == 2021)){
+var Status = "inspected This year";
+}
+else if(Year(time1) == 2020){
+var Status = "inspected Last Year";
+}
+else{
+var Status = "Error";
+}
+return Status

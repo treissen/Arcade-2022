@@ -1,0 +1,7 @@
+if(datediff(now(), $feature.Date, 'days')<14){
+    var label = ('Inspected by ' + DomainName($feature,"Tech") + ' ' + text(date($feature.date),'ddd, ' + 'MMM ' + 'D'));
+}
+else{
+    var label = ''
+}
+return label

@@ -1,0 +1,46 @@
+/// 02/16/2022 need to add new Chemicals and code for previous years symbology...
+if($feature.Product == 'Natular G' && (datediff(now(), $feature.EndTime, 'days'))<7){
+var status = "New";
+}
+Else if($feature.Product == 'Vectobac GR' && (datediff(now(), $feature.EndTime, 'days'))<7){
+var status = "New";
+}
+else if($feature.Product == 'VectoMax FG' && (datediff(now(), $feature.EndTime, 'days'))<22){
+var status = "New";
+}
+else if($feature.Product == 'Duplex G' && (datediff(now(), $feature.EndTime, 'days'))<26){
+var status = "New";
+}
+else if($feature.Product == 'Natular G30' && (datediff(now(), $feature.EndTime, 'days'))<27){
+var status = "New";
+}
+else if($feature.Product == 'VectoPrime' && (datediff(now(), $feature.EndTime, 'days'))<7){
+var status = "New";
+}
+///Next lines of code are for symbolizing treatments that have been expired for less than a week
+
+else if($feature.Product == 'Natular G' && ((datediff(now(), $feature.EndTime, 'days')>=7) && (datediff(now(), $feature.EndTime, 'days'))<14)){
+var status = "Expired";
+}
+Else if($feature.Product == 'Vectobac GR' && ((datediff(now(), $feature.EndTime, 'days')>=7) && (datediff(now(), $feature.EndTime, 'days'))<14)){
+var status = "Expired";
+}
+else if($feature.Product == 'VectoMax FG' && ((datediff(now(), $feature.EndTime, 'days')>=22) && (datediff(now(), $feature.EndTime, 'days'))<29)){
+var status = "Expired";
+}
+else if($feature.Product == 'Duplex G' && ((datediff(now(), $feature.EndTime, 'days')>=26) && (datediff(now(), $feature.EndTime, 'days'))<33)){
+var status = "Expired";
+}
+else if($feature.Product == 'Natular G30' && ((datediff(now(), $feature.EndTime, 'days')>=27) && (datediff(now(), $feature.EndTime, 'days'))<34)){
+var status = "Expired";
+}
+else if($feature.Product == 'VectoPrime' && ((datediff(now(), $feature.EndTime, 'days')>=7) && (datediff(now(), $feature.EndTime, 'days'))<14)){
+var status = "Expired";
+}
+else if(Year($feature.EndTime) == 1899){
+    var status = "error in date";
+} 
+else {
+var status = "old";
+}
+return status

@@ -21,7 +21,7 @@ else if(Month($feature.Date) != 2 && Year($feature.Date) == 2021){
 }
 else var age = (text(date($feature.date),'ddd, ' + 'MMM ' + 'D'));
 
-/// 2020 labels
+/// 2021 labels
 if( age == ' March 2021'){
     var status = ' March 2021';
 }
@@ -38,7 +38,13 @@ else if((isEmpty($feature.AmountUsed)) && (datediff(now(), $feature.Date, 'days'
 else if($feature.Product == 'Natular G (EPA#8329-80)' && (datediff(now(), $feature.Date, 'days'))<14){
 var status = LBS + ' LBS of ' + Product + age;
 }
+else if($feature.Product == 'Censor (EPA#8329-80)' && (datediff(now(), $feature.Date, 'days'))<14){
+var status = LBS + ' LBS of ' + Product + age;
+}
 else if($feature.Product == 'Vectobac GR (EPA#73049-486)' && (datediff(now(), $feature.Date, 'days'))<14){
+var status = LBS + ' LBS of ' + Product + age;
+}
+else if($feature.Product == 'VectoPrime FG (EPA#73049-501)' && (datediff(now(), $feature.Date, 'days'))<14){
 var status = LBS + ' LBS of ' + Product + age;
 }
 else if($feature.Product == 'Vectobac 12AS (EPA#73049-38)' && (datediff(now(), $feature.Date, 'days'))<14){
@@ -57,6 +63,9 @@ else if($feature.Product == 'Duplex G (EPA#89459-93)' && (datediff(now(), $featu
 var status = LBS + ' LBS of ' + Product + age;
 }
 else if($feature.Product == 'Natular G30 (EPA#8329-83)' && (datediff(now(), $feature.Date, 'days'))<34){
+var status = LBS + ' LBS of ' + Product + age;
+}
+else if($feature.Product == 'MetaLarv S-PT (EPA#73049-475)' && (datediff(now(), $feature.Date, 'days'))<42){
 var status = LBS + ' LBS of ' + Product + age;
 }
 

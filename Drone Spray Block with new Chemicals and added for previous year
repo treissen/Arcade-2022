@@ -1,0 +1,93 @@
+/// 02/17/2022 added new chem and symbology for previous year's spray blocks.
+
+/* previous year treatment symbology*/
+var x = Year($feature.EndTime)
+var y = Month($feature.EndTime)
+var myArray = [2,3,4,5,6,7,8,9]
+if(x==2021 && y==2){
+    var status = "March 2021";
+}
+else if(x == 2021 && y == 3){
+    var status = "April 2021";
+}
+else if(x == 2021 && y == 4){
+    var status = "May 2021";
+}
+else if(x == 2021 && y == 5){
+    var status = "June 2021";
+}
+else if(x == 2021 && y == 6){
+    var status = "July 2021";
+}
+else if(x == 2021 && y == 7){
+    var status = "August 2021";
+}
+else if(x == 2021 && y == 8){
+    var status = "September 2021";
+}
+else if(x == 2021 && y == 9){
+    var status = "October 2021";
+}
+else if(x == 2021 && y != myArray){
+    var status = "2021";
+}
+
+/* current Year's Treatments*/ 
+
+else if($feature.Product == 'Natular G (EPA#8329-80)' && (datediff(now(), $feature.EndTime, 'days'))<7){
+var status = "New";
+}
+else if($feature.Product == 'Censor (EPA#8329-80)' && (datediff(now(), $feature.EndTime, 'days'))<7){
+var status = "New";
+}
+else if($feature.Product == 'Vectobac GR (EPA#73049-486)' && (datediff(now(), $feature.EndTime, 'days'))<7){
+var status = "New";
+}
+else if($feature.Product == 'VectoMax FG (EPA#73049-429)' && (datediff(now(), $feature.EndTime, 'days'))<22){
+var status = "New";
+}
+else if($feature.Product == 'Duplex G (EPA#89459-93)' && (datediff(now(), $feature.EndTime, 'days'))<26){
+var status = "New";
+}
+else if($feature.Product == 'Natular G30 (EPA#8329-83)' && (datediff(now(), $feature.EndTime, 'days'))<27){
+var status = "New";
+}
+else if($feature.Product == 'VectoPrime FG (EPA#73049-501)' && (datediff(now(), $feature.EndTime, 'days'))<7){
+var status = "New";
+}
+else if($feature.Product == 'MetaLarv S-PT (EPA#73049-475)' && (datediff(now(), $feature.EndTime, 'days'))<40){
+var status = "New";
+}
+///Next lines of code are for symbolizing treatments that have been expired for less than a week
+
+else if($feature.Product == 'Natular G (EPA#8329-80)' && ((datediff(now(), $feature.EndTime, 'days')>=7) && (datediff(now(), $feature.EndTime, 'days'))<14)){
+var status = "Expired";
+}
+else if($feature.Product == 'Vectobac GR (EPA#73049-486)' && ((datediff(now(), $feature.EndTime, 'days')>=7) && (datediff(now(), $feature.EndTime, 'days'))<14)){
+var status = "Expired";
+}
+else if($feature.Product == 'VectoMax FG (EPA#73049-429)' && ((datediff(now(), $feature.EndTime, 'days')>=22) && (datediff(now(), $feature.EndTime, 'days'))<29)){
+var status = "Expired";
+}
+else if($feature.Product == 'Duplex G (EPA#89459-93)' && ((datediff(now(), $feature.EndTime, 'days')>=26) && (datediff(now(), $feature.EndTime, 'days'))<33)){
+var status = "Expired";
+}
+else if($feature.Product == 'Natular G30 (EPA#8329-83)' && ((datediff(now(), $feature.EndTime, 'days')>=27) && (datediff(now(), $feature.EndTime, 'days'))<34)){
+var status = "Expired";
+}
+else if($feature.Product == 'MetaLarv S-PT (EPA#73049-475)' && ((datediff(now(), $feature.EndTime, 'days')>=40) && (datediff(now(), $feature.EndTime, 'days'))<42)){
+var status = "Expired";
+}
+else if($feature.Product == 'VectoPrime FG (EPA#73049-501)' && ((datediff(now(), $feature.EndTime, 'days')>=7) && (datediff(now(), $feature.EndTime, 'days'))<14)){
+var status = "Expired";
+}
+else if($feature.Product == 'Censor (EPA#8329-80)' && ((datediff(now(), $feature.EndTime, 'days')>=7) && (datediff(now(), $feature.EndTime, 'days'))<14)){
+var status = "Expired";
+}
+else if(Year($feature.EndTime) == 1899){
+    var status = "error in date";
+} 
+else {
+var status = "old";
+}
+return status

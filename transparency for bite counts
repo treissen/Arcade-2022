@@ -1,0 +1,47 @@
+/* set up date ranges*/
+// Write a script that returns a value that will be used to draw features.
+// For example, find the percentage of males:
+// Round(($feature.MalePop / $feature.TotalPop) * 100, 2)
+
+/*set up date ranges for if the bite count is still active*/
+
+/*var D = $feature.Date
+if(datediff(now(), D, 'days')<7){
+    var Relevancy = 'Recent';
+}
+else if(datediff(now(), D, 'days')>=7 && datediff(now(),D, 'days')<14){
+    var Relevancy = 'past 2 weeks';
+}
+else if(datediff(now(), D, 'days')>=14 && datediff(now(),D, 'days')<30){
+    var Relevancy = 'past month';
+}
+else if(datediff(now(), D, 'days')>=30 && year(D) == year(now())){
+    var Relevancy = 'this year';
+}
+else if(year(D) != year(now())){
+    var Relevancy = 'last year';
+}
+else var Relevancy = 'error'*/
+
+
+/* set up separate bite count numbers into intensity categories */
+
+if($feature["Mosquitoes_Per_Min"] >= 1 && $feature["Mosquitoes_Per_Min"] <= 10){
+    var Status = 'lite';
+}
+else if($feature["Mosquitoes_Per_Min"] >10 && $feature["Mosquitoes_Per_Min"] <= 25){
+    var Status = 'moderate';
+}
+else if($feature["Mosquitoes_Per_Min"] >25 && $feature["Mosquitoes_Per_Min"] <= 50){
+    var Status = 'high';
+}
+else if($feature["Mosquitoes_Per_Min"] >50 && $feature["Mosquitoes_Per_Min"] <= 100){
+    var Status = 'very high';
+}
+else if($feature["Mosquitoes_Per_Min"] >100){
+    var Status = 'intense';
+}
+else{
+    var Status = 'none'
+}
+return Status

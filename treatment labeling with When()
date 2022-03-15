@@ -1,0 +1,38 @@
+// when runs alot faster than if statements
+
+
+var Acres = $feature.Acres
+var LBS = $feature.AmountUsed
+var Product = DomainName($feature,"Product") + ', '
+var age = (text(date($feature.Date),'ddd, ' + 'MMM ' + 'D')); /*returns label date for current feaures*/
+var ProductLabel = LBS + ' LBS of ' + Product + age
+function label($feature) { /*this is the function that will run to label the features. it needs to return statusLaberl*/
+    When(
+        (Month($feature.Date) == Month(Now()) && Year($feature.Date) == 2020), // checks this...
+         (text(date($feature.Date),'MMM ' + 'D, ' + 'Y')), //if true returns this...
+        (Month($feature.Date) == Month(Now()) && Year($feature.Date) == 2021), // checks this...
+        (text(date($feature.Date),'MMM ' + 'D, ' + 'Y')), // if true returns this...
+        ($feature.Product == 'Natular G (EPA#8329-80)' && (datediff(now(), $feature.Date, 'days'))<14), // nat g check
+        ProductLabel, // nat g label
+        ($feature.Product == 'Censor (EPA#8329-80)' && (datediff(now(), $feature.Date, 'days'))<14),  //cencor check
+        ProductLabel, //censor label
+        ($feature.Product == 'Vectobac GR (EPA#73049-486)' && (datediff(now(), $feature.Date, 'days'))<14), // vectobac check
+        ProductLabel, //vectobac label
+        ($feature.Product == 'VectoPrime FG (EPA#73049-501)' && (datediff(now(), $feature.Date, 'days'))<14), //vectoprime check
+        ProductLabel, //vectoprime label
+        ($feature.Product == 'Vectobac 12AS (EPA#73049-38)' && (datediff(now(), $feature.Date, 'days'))<14), //vectobac 12as check
+        ProductLabel, //vectoback 12as label
+        ($feature.Product == 'Kontrol Oil (EPA#73748-10)' && (datediff(now(), $feature.Date, 'days'))<7), //kontrol oil check
+        ProductLabel, //kontrol oil label
+        ($feature.Product == 'Abate 1% (EPA#8329-17)' && (datediff(now(), $feature.Date, 'days'))<14), //abate check
+        ProductLabel, //abate label
+        ($feature.Product == 'VectoMax FG (EPA#73049-429)' && (datediff(now(), $feature.Date, 'days'))<29), //vectomax check
+        ProductLabel, // vectomax label
+        ($feature.Product == 'Duplex G (EPA#89459-93)' && (datediff(now(), $feature.Date, 'days'))<33), //duplex g check
+        ProductLabel, //duplex g label
+        ($feature.Product == 'Natular G30 (EPA#8329-83)' && (datediff(now(), $feature.Date, 'days'))<34), // natg30 check
+        ProductLabel, //natg30 label
+        ''//default label
+    )
+}
+label($feature); //call labeling function

@@ -1,0 +1,12 @@
+//Sources
+// arcade expression for field calculation of source symbology
+
+// if status is active run if statements for display
+var activeSym = function() {
+    case:
+}
+if($feature.Status == 'Active') {
+
+}
+
+// if status is inactive return inactive

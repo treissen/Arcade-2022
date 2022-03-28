@@ -2,11 +2,19 @@
 // arcade expression for field calculation of source symbology
 
 // if status is active run if statements for display
-var activeSym = function() {
-    case:
-}
+var activeSym = When(
+    $feature.Type == 'Hand', 
+    'Hand', 
+    $feature.Type == 'Drone',
+    'Drone', 
+    $feature.Type == 'Airplane', 
+    'Airplane',
+    'error'
+)
 if($feature.Status == 'Active') {
-
+    activeSym;
+} else {
+    'Inactive'
 }
 
 // if status is inactive return inactive

@@ -1,13 +1,26 @@
-// Write a script that returns a value that will be used to draw features.
-// For example, find the percentage of males:
-// Round(($feature.MalePop / $feature.TotalPop) * 100, 2)
-/*  on february 12 2021 added 2020 month separtations.*/
-/// on february 7 2022 added 2021 month separations
-///Days passed and Product Used And Sample and expired treatments for less than one week
-// 03/11/2021 added vectoprime and censor
+
+//Treatment Symbology Script
+//Field Maps 2022
+//Tim Reissen 
+
+//requirements for this to work...
+    //date field
+    //Acres field, if empty then symbolizes as sample only
+    //Product Field with name and epa number ex: 'Natular G (EPA#8329-80)'
+
+// note: all symbology is set to 'status' variable. 
+
+
 var x = Year($feature.Date)
 var y = Month($feature.Date)
-var myArray = [3,4,5,6,7,8,9]
+
+//can remove code below if no data, or do not want to show.
+//I symbolize previous year same month data so techs can see about when different areas start producing. 
+// Chose to do months, instead of datediff 365 'days' because I can adjust them easier. 
+
+
+// 2020 treatments
+
 if(x==2020 && y==2){
     var status = "March 2020";
 }
@@ -32,10 +45,9 @@ else if(x == 2020 && y == 8){
 else if(x == 2020 && y == 9){
     var status = "October 2020";
 }
-else if(x == 2020 && y != myArray){
-    var status = "2020";
-}
-//// 2021 treatments/
+
+// 2021 treatments
+
 else if(x==2021 && y==2){
     var status = "March 2021";
 }
@@ -60,75 +72,91 @@ else if(x == 2021 && y == 8){
 else if(x == 2021 && y == 9){
     var status = "October 2021";
 }
-else if(x == 2021 && y != myArray){
-    var status = "2021";
-}
+
+
+//Days passed and Product Used And Sample and expired treatments for less than one week
+
+// current year treatment
+
 else if(isEmpty($feature.Acres) && (datediff(now(), $feature.Date, 'days'))<10){
-var status = "Sample";
+    var status = "Sample";
 }
 else if($feature.Product == 'Natular G (EPA#8329-80)' && (datediff(now(), $feature.Date, 'days'))<7){
-var status = "New";
+    var status = "New";
 }
 else if($feature.Product == 'Censor (EPA#8329-80)' && (datediff(now(), $feature.Date, 'days'))<7){
-var status = "New";
+    var status = "New";
 }
-else if($feature.Product == 'Vectobac GR (EPA#73049-486)' && (datediff(now(), $feature.Date, 'days'))<7){
-var status = "New";
+else if($feature.Product == 'Vectobac GR (EPA#73049-486)' && (datediff(now(), $feature.Date, 'days'))<5){
+    var status = "New";
 }
 else if($feature.Product == 'VectoPrime FG (EPA#73049-501)' && (datediff(now(), $feature.Date, 'days'))<7){
     var status = "New";
-    }
+}
 else if($feature.Product == 'Vectobac 12AS (EPA#73049-38)' && (datediff(now(), $feature.Date, 'days'))<7){
-var status = "New";
+    var status = "New";
 }
 else if($feature.Product == 'Kontrol Oil (EPA#73748-10)' && (datediff(now(), $feature.Date, 'days'))<7){
-var status = "New";
+    var status = "New";
 }
 else if($feature.Product == 'Abate 1% (EPA#8329-17)' && (datediff(now(), $feature.Date, 'days'))<7){
-var status = "New";
+    var status = "New";
 }
 else if($feature.Product == 'VectoMax FG (EPA#73049-429)' && (datediff(now(), $feature.Date, 'days'))<22){
-var status = "New";
+    var status = "New";
 }
 else if($feature.Product == 'Duplex G (EPA#89459-93)' && (datediff(now(), $feature.Date, 'days'))<26){
-var status = "New";
+    var status = "New";
 }
 else if($feature.Product == 'Natular G30 (EPA#8329-83)' && (datediff(now(), $feature.Date, 'days'))<27){
-var status = "New";
+    var status = "New";
 }
-///Next lines of code are for symbolizing treatments that have been expired for less than a week
+
+//Next lines of code are for symbolizing treatments that have been expired for less than a week
 
 else if($feature.Product == 'Natular G (EPA#8329-80)' && ((datediff(now(), $feature.Date, 'days')>=7) && (datediff(now(), $feature.Date, 'days'))<14)){
-var status = "Expired";
+    var status = "Expired";
 }
 else if($feature.Product == 'Censor (EPA#8329-80)' && ((datediff(now(), $feature.Date, 'days')>=7) && (datediff(now(), $feature.Date, 'days'))<14)){
-var status = "Expired";
+    var status = "Expired";
 }
 else if($feature.Product == 'VectoPrime FG (EPA#73049-501)' && ((datediff(now(), $feature.Date, 'days')>=7) && (datediff(now(), $feature.Date, 'days'))<14)){
-var status = "Expired";
+    var status = "Expired";
+}
+else if($feature.Product == 'Vectobac GR (EPA#73049-486)' && ((datediff(now(), $feature.Date, 'days')>=5) && (datediff(now(), $feature.Date, 'days'))<10)){
+    var status = "Expired";
 }
 else if($feature.Product == 'Vectobac 12AS (EPA#73049-38)' && ((datediff(now(), $feature.Date, 'days')>=7) && (datediff(now(), $feature.Date, 'days'))<14)){
-var status = "Expired";
+    var status = "Expired";
 }
 else if($feature.Product == 'Kontrol Oil ((EPA#73748-10)' && ((datediff(now(), $feature.Date, 'days')>=7) && (datediff(now(), $feature.Date, 'days'))<14)){
-var status = "Expired";
+    var status = "Expired";
 }
 else if($feature.Product == 'Abate 1% (EPA#8329-17)' && ((datediff(now(), $feature.Date, 'days')>=7) && (datediff(now(), $feature.Date, 'days'))<14)){
-var status = "Expired";
+    var status = "Expired";
 }
 else if($feature.Product == 'VectoMax FG (EPA#73049-429)' && ((datediff(now(), $feature.Date, 'days')>=22) && (datediff(now(), $feature.Date, 'days'))<29)){
-var status = "Expired";
+    var status = "Expired";
 }
 else if($feature.Product == 'Duplex G (EPA#89459-93)' && ((datediff(now(), $feature.Date, 'days')>=26) && (datediff(now(), $feature.Date, 'days'))<33)){
-var status = "Expired";
+    var status = "Expired";
 }
 else if($feature.Product == 'Natular G30 (EPA#8329-83)' && ((datediff(now(), $feature.Date, 'days')>=27) && (datediff(now(), $feature.Date, 'days'))<34)){
-var status = "Expired";
+    var status = "Expired";
 }
+
+//error symbol if date field auto fills to 1899
+
 else if(Year($feature.Date) == 1899){
     var status = "error in date";
 } 
+
+// final else statement to show old treatments that do not fit into previous checks
+// should only show current year treatments that are old
+// without this final else, will trigger runtime error.
+
 else {
-var status = "old";
+    var status = "old";
 }
+
 return status
